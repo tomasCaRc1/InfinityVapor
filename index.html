@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>InfinityVapor</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:#090909;
+color:white;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:28px 8%;
+border-bottom:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(10px);
+}
+
+.logo{
+font-size:28px;
+font-weight:800;
+letter-spacing:-1px;
+}
+
+.logo span{
+color:#8B5CF6;
+}
+
+nav{
+display:flex;
+gap:30px;
+}
+
+nav a{
+color:#b8b8b8;
+text-decoration:none;
+transition:.25s;
+}
+
+nav a:hover{
+color:white;
+}
+
+.hero{
+min-height:90vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:0 8%;
+}
+
+.hero-content{
+max-width:850px;
+text-align:center;
+}
+
+.tag{
+display:inline-block;
+padding:10px 18px;
+border-radius:999px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+color:#b9b9b9;
+margin-bottom:30px;
+font-size:14px;
+}
+
+h1{
+font-size:82px;
+line-height:.95;
+letter-spacing:-4px;
+margin-bottom:25px;
+}
+
+.gradient{
+background:linear-gradient(90deg,#ffffff,#a78bfa);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{
+font-size:19px;
+color:#a9a9a9;
+line-height:1.8;
+max-width:650px;
+margin:auto;
+margin-bottom:40px;
+}
+
+.buttons{
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:15px 24px;
+border-radius:16px;
+font-weight:700;
+text-decoration:none;
+transition:.25s;
+}
+
+.primary{
+background:white;
+color:black;
+}
+
+.primary:hover{
+transform:translateY(-3px);
+}
+
+.secondary{
+border:1px solid rgba(255,255,255,.12);
+color:white;
+background:rgba(255,255,255,.04);
+}
+
+.secondary:hover{
+background:rgba(255,255,255,.08);
+}
+
+.catalogo{
+padding:120px 8%;
+}
+
+.section-title{
+font-size:52px;
+letter-spacing:-2px;
+margin-bottom:18px;
+}
+
+.section-subtitle{
+color:#a0a0a0;
+margin-bottom:45px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:22px;
+}
+
+.card{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+padding:24px;
+border-radius:26px;
+transition:.25s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.brand{
+color:#8B5CF6;
+font-size:14px;
+margin-bottom:12px;
+}
+
+.product-name{
+font-size:24px;
+font-weight:700;
+margin-bottom:10px;
+}
+
+.flavor{
+color:#b8b8b8;
+margin-bottom:24px;
+}
+
+.price{
+font-size:28px;
+font-weight:800;
+margin-bottom:20px;
+}
+
+.buy{
+display:inline-block;
+background:white;
+color:black;
+padding:12px 16px;
+border-radius:14px;
+font-weight:700;
+text-decoration:none;
+}
+
+footer{
+padding:40px;
+text-align:center;
+color:#888;
+border-top:1px solid rgba(255,255,255,.08);
+}
+.tools{
+display:flex;
+gap:15px;
+margin-bottom:30px;
+flex-wrap:wrap;
+}
+
+.tools input,.tools select{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.1);
+color:white;
+padding:15px;
+border-radius:14px;
+font-size:15px;
+}
+
+.tools input{
+flex:1;
+min-width:240px;
+}
+
+.tools select{
+min-width:200px;
+}
+html{
+scroll-behavior:smooth;
+}
+
+header{
+position:sticky;
+top:0;
+z-index:100;
+background:rgba(9,9,9,.72);
+backdrop-filter:blur(18px);
+}
+
+.hero{
+position:relative;
+overflow:hidden;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+width:420px;
+height:420px;
+background:rgba(139,92,246,.18);
+filter:blur(90px);
+border-radius:50%;
+top:28%;
+left:50%;
+transform:translateX(-50%);
+z-index:-1;
+}
+
+.hero-content{
+animation:fadeUp .9s ease forwards;
+}
+
+.card,.btn,.tag{
+animation:fadeUp .8s ease forwards;
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(18px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.card:hover{
+transform:translateY(-8px);
+border-color:rgba(139,92,246,.35);
+box-shadow:0 18px 45px rgba(0,0,0,.35);
+}
+
+.btn:hover{
+box-shadow:0 12px 30px rgba(255,255,255,.08);
+}
+
+.buy:hover{
+transform:translateY(-2px);
+}
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+background-size:54px 54px;
+mask-image:linear-gradient(to bottom, rgba(0,0,0,.65), transparent 75%);
+pointer-events:none;
+z-index:-2;
+}
+
+.card{
+background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+backdrop-filter:blur(18px);
+box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+.catalogo{
+position:relative;
+}
+
+.catalogo::before{
+content:"";
+position:absolute;
+width:260px;
+height:260px;
+background:rgba(139,92,246,.12);
+filter:blur(80px);
+border-radius:50%;
+right:8%;
+top:20%;
+z-index:-1;
+}
+
+.section-title{
+background:linear-gradient(90deg,#fff,#b9a7ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.tools input:focus,.tools select:focus{
+border-color:rgba(139,92,246,.6);
+box-shadow:0 0 0 4px rgba(139,92,246,.12);
+outline:none;
+}
+
+.buy{
+transition:.25s;
+}
+
+.buy:hover{
+box-shadow:0 12px 30px rgba(255,255,255,.12);
+}
+.logo{
+display:flex;
+align-items:center;
+gap:14px;
+font-size:28px;
+font-weight:800;
+letter-spacing:-1px;
+}
+
+.logo img{
+width:82px;
+height:auto;
+object-fit:contain;
+display:block;
+}
+object-fit:contain;
+filter:
+drop-shadow(0 0 14px rgba(255,255,255,.12))
+drop-shadow(0 0 22px rgba(139,92,246,.12));
+}
+
+
+.hero-content::after{
+content:"";
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px;
+margin-top:55px;
+}
+
+.stats-pro{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:16px;
+margin-top:55px;
+}
+
+.stat-pro{
+background:rgba(255,255,255,.045);
+border:1px solid rgba(255,255,255,.08);
+border-radius:24px;
+padding:22px;
+}
+
+.stat-pro{
+background:linear-gradient(
+180deg,
+rgba(255,255,255,.07),
+rgba(255,255,255,.02)
+);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:28px;
+
+padding:34px 28px;
+
+min-height:240px;
+
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+
+transition:.25s;
+}
+
+.stat-pro:hover{
+transform:translateY(-6px);
+border-color:rgba(139,92,246,.35);
+box-shadow:0 18px 45px rgba(0,0,0,.35);
+}
+.stat-pro span{
+color:#aaa;
+font-size:14px;
+}
+
+.floating-wa{
+position:fixed;
+right:24px;
+bottom:24px;
+z-index:200;
+background:white;
+color:black;
+padding:15px 18px;
+border-radius:999px;
+font-weight:800;
+text-decoration:none;
+box-shadow:0 18px 45px rgba(0,0,0,.35);
+transition:.25s;
+}
+
+.floating-wa:hover{
+transform:translateY(-4px);
+}
+
+footer{
+background:linear-gradient(180deg,transparent,rgba(139,92,246,.06));
+}
+.hero-logo{
+width:120px;
+margin-bottom:12px;
+opacity:.95;
+height:auto;
+object-fit:contain;
+margin-bottom:24px;
+filter:
+drop-shadow(0 0 20px rgba(255,255,255,.16))
+drop-shadow(0 0 38px rgba(139,92,246,.16));
+animation:floatLogo 4s ease-in-out infinite;
+}
+
+@keyframes floatLogo{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-8px);
+}
+}
+header{
+position:fixed;
+top:18px;
+left:50%;
+transform:translateX(-50%);
+width:min(92%,1320px);
+padding:20px 34px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-radius:28px;
+border:1px solid rgba(255,255,255,.08);
+background:rgba(10,10,10,.72);
+backdrop-filter:blur(20px);
+z-index:999;
+left:50%;
+transform:translateX(-50%);
+top:18px;
+border:1px solid rgba(255,255,255,.12);
+border-radius:28px;
+padding:22px 38px;
+background:rgba(9,9,9,.72);
+box-shadow:0 20px 70px rgba(0,0,0,.35);
+}
+
+.hero{
+padding-top:220px;
+}
+
+.hero-logo{
+width:260px;
+margin-bottom:22px;
+filter:
+drop-shadow(0 0 24px rgba(255,255,255,.18))
+drop-shadow(0 0 55px rgba(139,92,246,.25));
+}
+
+.stats-pro{
+max-width:1280px;
+margin:80px auto 0;
+
+display:grid;
+grid-template-columns:repeat(4,minmax(0,1fr));
+
+gap:22px;
+
+align-items:stretch;
+}
+
+.stats-pro{
+max-width:1180px;
+margin:80px auto 0;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:24px;
+}
+
+.stat-pro strong{
+font-size:20px;
+}
+
+.stat-pro span{
+line-height:1.5;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+width:900px;
+height:420px;
+border:1px solid rgba(139,92,246,.22);
+border-top:none;
+border-radius:0 0 50% 50%;
+bottom:80px;
+left:50%;
+transform:translateX(-50%);
+filter:drop-shadow(0 0 28px rgba(139,92,246,.25));
+z-index:-1;
+}
+.grid{
+max-width:1180px;
+margin:0 auto;
+}
+
+.card{
+min-height:230px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+position:relative;
+overflow:hidden;
+}
+
+.card::before{
+content:"";
+position:absolute;
+width:120px;
+height:120px;
+background:rgba(139,92,246,.14);
+filter:blur(45px);
+right:-35px;
+top:-35px;
+}
+
+.brand,.product-name,.flavor,.price,.buy{
+position:relative;
+z-index:2;
+}
+
+.buy{
+width:max-content;
+}
+.catalog-pill{
+color:#a78bfa;
+font-weight:800;
+font-size:14px;
+letter-spacing:.12em;
+margin-bottom:14px;
+text-align:center;
+}
+
+.catalogo .section-title,
+.catalogo .section-subtitle{
+text-align:center;
+}
+.icon{
+width:54px;
+height:54px;
+border-radius:18px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
+margin-bottom:18px;
+background:rgba(139,92,246,.12);
+border:1px solid rgba(139,92,246,.25);
+box-shadow:0 0 24px rgba(139,92,246,.15);
+}
+footer{
+padding:90px 20px;
+text-align:center;
+border-top:1px solid rgba(255,255,255,.08);
+}
+
+.footer-logo{
+width:90px;
+margin-bottom:20px;
+opacity:.9;
+}
+
+footer h3{
+font-size:32px;
+margin-bottom:12px;
+}
+
+footer p{
+color:#999;
+margin-bottom:20px;
+}
+@media(max-width:800px)
+.stats-pro{
+grid-template-columns:1fr;
+}
+{
+
+h1{
+font-size:54px;
+}
+
+nav{
+display:none;
+}
+
+}
+select option{
+background:#111;
+color:white;
+}
+.stats-pro{
+max-width:1280px !important;
+margin:80px auto 0 !important;
+display:grid !important;
+grid-template-columns:repeat(4,1fr) !important;
+gap:22px !important;
+align-items:stretch !important;
+}
+
+.stat-pro{
+width:auto !important;
+min-height:240px !important;
+padding:34px 28px !important;
+border-radius:28px !important;
+}
+
+@media(max-width:800px){
+.stats-pro{
+grid-template-columns:1fr !important;
+}
+}
+@media(max-width:800px){
+
+header{
+padding:18px 22px !important;
+border-radius:24px;
+}
+
+.logo{
+font-size:18px !important;
+gap:10px !important;
+}
+
+.logo img{
+width:58px !important;
+}
+
+nav{
+display:none;
+}
+
+.hero{
+padding-top:150px !important;
+padding-left:24px;
+padding-right:24px;
+}
+
+h1{
+font-size:68px !important;
+line-height:.95;
+}
+
+.hero p{
+font-size:18px;
+line-height:1.5;
+}
+
+.buttons{
+flex-direction:column;
+align-items:center;
+gap:16px;
+}
+
+.btn{
+width:100%;
+max-width:320px;
+justify-content:center;
+}
+
+.stats-pro{
+grid-template-columns:1fr !important;
+gap:22px;
+}
+
+.section-title{
+font-size:64px !important;
+}
+
+.tools{
+flex-direction:column;
+}
+
+.tools input,
+.tools select{
+width:100%;
+}
+
+.floating-wa{
+right:18px !important;
+bottom:18px !important;
+padding:14px 18px !important;
+font-size:15px;
+}
+
+}
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<img src="logo.png" alt="Infinity Logo">
+
+
+
+<div>
+Infinity<span>Vapor</span>
+</div>
+
+</div>
+
+<nav>
+<a href="#inicio">Inicio</a>
+<a href="#catalogo">Catálogo</a>
+<a href="#contacto">Contacto</a>
+</nav>
+
+</header>
+
+<section class="hero" id="inicio">
+
+<div class="hero-content">
+
+<div class="tag">
+CATÁLOGO DIGITAL · EXPERIENCIA PREMIUM
+</div>
+
+<h1>
+Descubrí otra forma de ver <span class="gradient">InfinityVapor</span>
+</h1>
+
+<p>
+Un catálogo minimalista, rápido y elegante para explorar productos disponibles y consultar directamente por WhatsApp.
+</p>
+
+<div class="buttons">
+
+<a class="btn primary" href="#catalogo">
+Ver catálogo
+</a>
+
+<a class="btn secondary" href="https://wa.me/5493476553748?text=Hola%2C%20quiero%20consultar%20por%20el%20cat%C3%A1logo" target="_blank">
+WhatsApp
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<div class="stats-pro">
+
+
+<div class="stat-pro">
+<div class="icon">⚡</div>
+<strong>Catálogo online</strong>
+<span>Productos organizados y actualizados para consultar rápido.</span>
+</div>
+
+<div class="stat-pro">
+<div class="icon">💬</div>
+<strong>Atención directa</strong>
+<span>Consultas simples por WhatsApp sin vueltas.</span>
+</div>
+
+<div class="stat-pro">
+<div class="icon">✦</div>
+<strong>Diseño premium</strong>
+<span>Una experiencia rápida, limpia y minimalista.</span>
+</div>
+
+<div class="stat-pro">
+<div class="icon">✓</div>
+<strong>Consulta rápida</strong>
+<span>Elegí un producto y consultá disponibilidad al instante.</span>
+</div>
+
+</div>
+
+<section class="catalogo" id="catalogo">
+
+<h2 class="section-title">Catálogo</h2>
+
+<p class="section-subtitle">
+Productos destacados y disponibilidad actual.
+</p>
+
+<div class="tools">
+<input type="text" id="searchInput" placeholder="Buscar producto...">
+
+<select id="categoryFilter">
+<option value="todos">Todas las categorías</option>
+<option value="Destacados">Destacados</option>
+<option value="Accesorios">Accesorios</option>
+<option value="Novedades">Novedades</option>
+</select>
+</div>
+
+<div class="grid" id="productGrid"></div>
+
+</section>
+
+<section class="catalogo" id="contacto">
+
+<h2 class="section-title">Contacto</h2>
+
+<p class="section-subtitle">
+Consultá disponibilidad, precios o novedades por WhatsApp.
+</p>
+
+<a class="btn primary" href="https://wa.me/5493476553748?text=Hola%2C%20quiero%20consultar%20por%20el%20cat%C3%A1logo" target="_blank">
+Ir a WhatsApp
+</a>
+
+</section>
+
+<footer>
+
+<img src="logo.png" class="footer-logo">
+
+<h3>InfinityVapor</h3>
+
+<p>
+Minimal • Premium • Direct
+</p>
+
+<span>
+© 2026 InfinityVapor
+</span>
+
+</footer>
+
+<script>
+const whatsappNumber = "5493476553748";
+
+const products = [
+{
+category:"Destacados",
+name:"Producto Premium 01",
+detail:"Edición destacada",
+price:"$23.000"
+},
+{
+category:"Accesorios",
+name:"Producto Premium 02",
+detail:"Diseño minimalista",
+price:"$18.000"
+},
+{
+category:"Novedades",
+name:"Producto Premium 03",
+detail:"Nueva presentación",
+price:"$25.000"
+}
+];
+
+const grid = document.getElementById("productGrid");
+const searchInput = document.getElementById("searchInput");
+const categoryFilter = document.getElementById("categoryFilter");
+
+function renderProducts(){
+const search = searchInput.value.toLowerCase();
+const category = categoryFilter.value;
+
+const filtered = products.filter(product=>{
+const text = `${product.name} ${product.detail} ${product.category}`.toLowerCase();
+const matchSearch = text.includes(search);
+const matchCategory = category === "todos" || product.category === category;
+return matchSearch && matchCategory;
+});
+
+grid.innerHTML = filtered.map(product=>{
+const message = `Hola, quiero consultar por ${product.name}`;
+const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+return `
+<div class="card">
+<div class="brand">${product.category}</div>
+<div class="product-name">${product.name}</div>
+<div class="flavor">${product.detail}</div>
+<div class="price">${product.price}</div>
+<a class="buy" href="${waLink}" target="_blank">Consultar</a>
+</div>
+`;
+}).join("");
+}
+
+searchInput.addEventListener("input",renderProducts);
+categoryFilter.addEventListener("change",renderProducts);
+
+renderProducts();
+</script>
+
+<a class="floating-wa" href="https://wa.me/5493476553748?text=Hola%2C%20quiero%20consultar%20por%20el%20cat%C3%A1logo" target="_blank">
+WhatsApp
+</a>
+
+</body>
+</html>
