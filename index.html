@@ -918,6 +918,11 @@ border:1px solid rgba(239,68,68,.28);
 color:#f87171;
 
 }
+.stock.muy-pronto{
+background:rgba(234,179,8,.12);
+border:1px solid rgba(234,179,8,.28);
+color:#facc15;
+}
 </style>
 </head>
 
@@ -1482,7 +1487,7 @@ model:"BC 45K PRO",
 name:"STRAWBERRY ICE",
 detail:"STRAWBERRY ICE",
 price:"$30000",
-stock:"agotado"
+stock:"muy-pronto"
 },
 {
 image:"images/ELF BAR BC 45K PRO11.png",
@@ -2526,11 +2531,10 @@ return 0;
 grid.innerHTML = filtered.map(product=>{
 
 const message =
-
-product.stock === "disponible"
-
+product.stock==="disponible"
 ? `Hola, quiero comprar ${product.brand} ${product.model} ${product.name}`
-
+: product.stock==="muy-pronto"
+? `Hola, quiero consultar por ${product.brand} ${product.model} ${product.name}`
 : `Hola, quiero encargar ${product.brand} ${product.model} ${product.name}`;
 const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
@@ -2560,9 +2564,13 @@ ${product.price}
 
 <div class="stock ${product.stock}">
 
-${product.stock==="disponible"
+${
+product.stock==="disponible"
 ? "🟢 Disponible"
-: "🔴 Agotado"}
+: product.stock==="muy-pronto"
+? "🟡 Muy pronto"
+: "🔴 Agotado"
+}
 
 </div>
 
@@ -2570,9 +2578,13 @@ ${product.stock==="disponible"
 href="${waLink}"
 target="_blank">
 
-${product.stock === "disponible"
+${
+product.stock==="disponible"
 ? "Comprar"
-: "Encargar"}
+: product.stock==="muy-pronto"
+? "Consultar"
+: "Encargar"
+}
 
 </a>
 
