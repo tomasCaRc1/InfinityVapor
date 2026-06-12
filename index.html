@@ -2510,21 +2510,13 @@ return matchSearch && matchBrand && matchModel;
 
 filtered.sort((a,b)=>{
 
-if(
-a.stock==="disponible"
-&&
-b.stock==="agotado"
-)
-return -1;
+const order = {
+    "disponible": 1,
+    "muy-pronto": 2,
+    "agotado": 3
+};
 
-if(
-a.stock==="agotado"
-&&
-b.stock==="disponible"
-)
-return 1;
-
-return 0;
+return order[a.stock] - order[b.stock];
 
 });
 
