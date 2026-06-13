@@ -2536,7 +2536,9 @@ return `
 
 <img class="product-img"
 src="${product.image || 'placeholder.png'}"
-alt="${product.name}">
+alt="${product.name}"
+loading="lazy"
+decoding="async">
 
 <div class="brand">
 ${product.brand}
